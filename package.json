@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "ts-node index.ts",
-    "build": "tsc -p . --outDir bin"
+    "build": "tsc -p . --outDir bin",
+    "g:examples": "ts-node generate_examples_file.ts"
   },
   "author": "",
   "license": "ISC",

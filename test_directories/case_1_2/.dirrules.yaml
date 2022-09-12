@@ -1,8 +1,0 @@
----
-- '*'
-- /pages:
-    - /<CamelCase>:
-        - ?index.test.tsx
-        - index.tsx
-- x.ts
-- y.ts
