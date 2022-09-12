@@ -146,21 +146,22 @@ function _evaluate_rule(item, rule) {
             var item = _a.item, rule = _a.rule, analysis = _a.analysis;
             return analysis.incorrect_items;
         });
+        var isExtraneousItem = function (item) {
+            if (isDirRuleItem(item)) {
+                return false;
+            }
+            if (rule.content_rules.length === 0) {
+                return false;
+            }
+            // does not match any name rule. therefore it has no place in directory
+            var a_rule_matches = rule.content_rules.some(function (rule) {
+                return does_item_pass_name_rule({ item: item, rule: rule });
+            });
+            return !a_rule_matches;
+        };
         var extraneous_items = item.item_type === "file"
             ? []
-            : (0, get_items_in_directory_1.get_items_in_directory)(item.item_path).filter(function (item) {
-                if (isDirRuleItem(item)) {
-                    return false;
-                }
-                if (rule.content_rules.length === 0) {
-                    return false;
-                }
-                // does not match any name rule. therefore it has no place in directory
-                var no_rule_matches = rule.content_rules.some(function (rule) {
-                    return does_item_pass_name_rule({ item: item, rule: rule });
-                });
-                return !no_rule_matches;
-            });
+            : keep((0, get_items_in_directory_1.get_items_in_directory)(item.item_path), isExtraneousItem);
         return {
             item: item,
             rule: rule,
@@ -247,9 +248,11 @@ function _evaluate_rule(item, rule) {
                 });
             }
             case "NameOfParentDir": {
-                var expected_item_name_1 = rule.name_rule.replace("<NameOfParentDir>", path.basename(dir_path));
+                // get dir path
                 return items.filter(function (i) {
-                    return path.basename(i.item_path) === expected_item_name_1;
+                    var dir_path = path.dirname(i.item_path);
+                    var expected_item_name = rule.name_rule.replace("<NameOfParentDir>", path.basename(dir_path));
+                    return path.basename(i.item_path) === expected_item_name;
                 });
             }
             default: {
@@ -257,4 +260,7 @@ function _evaluate_rule(item, rule) {
             }
         }
     }
+}
+function keep(arr, predicate) {
+    return arr.filter(predicate);
 }

@@ -219,3 +219,65 @@ valid!
 }
 invalid dir structure! 
 ```
+
+## Example /example_5:
+.dirrules.yaml
+```.dirrules.yaml
+---
+- /<camelCase>:
+    - index.ts
+    - <NameOfParentDir>.ts
+    - <NameOfParentDir>.story.ts
+- index.ts
+```
+### case /example_5/case_5_1: 
+``` directory structure
+/example_5/case_5_1
+├── .dirrules.yaml
+├── hello
+│   └── index.ts
+└── index.ts
+
+1 directory, 3 files
+```
+
+``` dirlint output 
+> dirlint /example_5/case_5_1
+{
+  "item": {
+    "item_type": "dir",
+    "item_path": ""
+  },
+  "incorrect_items": [
+    {
+      "item": {
+        "item_type": "dir",
+        "item_path": "/hello"
+      },
+      "missing_items": [
+        "<NameOfParentDir>.ts",
+        "<NameOfParentDir>.story.ts"
+      ]
+    }
+  ]
+}
+invalid dir structure! 
+```
+
+### case /example_5/case_5_2: 
+``` directory structure
+/example_5/case_5_2
+├── .dirrules.yaml
+├── hello
+│   ├── hello.story.ts
+│   ├── hello.ts
+│   └── index.ts
+└── index.ts
+
+1 directory, 5 files
+```
+
+``` dirlint output 
+> dirlint /example_5/case_5_2
+valid! 
+```
