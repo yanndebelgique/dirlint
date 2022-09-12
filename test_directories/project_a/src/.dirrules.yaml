@@ -1,0 +1,16 @@
+---
+- /?components:
+    - /<CamelCase>:
+        - /?helpers
+        - ?<NameOfParentDir>.ts
+        - ?<NameOfParentDir>.test.ts
+        - /index.ts
+        - /<CamelCase>:
+            - index.ts
+    - index.ts
+    - ?index.test.ts
+- index.ts
+- /pages
+- wtf.ts
+- ?styled.ts
+- <NameOfParentDir>.ts

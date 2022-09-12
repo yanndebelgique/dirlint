@@ -1,0 +1,43 @@
+/?components/<CamelCase>/?helpers/
+/?components/<CamelCase>/?<NameOfParentDirectory>.ts
+/?components/<CamelCase>/?<NameOfParentDirectory>.test.ts
+/?components/<CamelCase>/index.ts
+/?components/index.ts
+/?components/?index.test.ts
+index.ts
+?styled.ts
+<NameOfDir>.ts
+
+
+
+
+
+/?components/<CamelCase>/?helpers/
+/?components/<CamelCase>/?<NameOfParentDirectory>.ts
+/?components/<CamelCase>/?<NameOfParentDirectory>.test.ts
+/?components/<CamelCase>/index.ts
+/?components/index.ts
+/?components/?index.test.ts
+index.ts
+?styled.ts
+<NameOfDir>.ts
+
+/?components => there can be a directory named components that follows the rules A
+index.ts => there has to be a file in the directory named index.ts
+?styled.ts => there can be a file in the directory named styled.ts
+<NameOfDir>.ts => there has to be a file with the name of the parent directory followed by ".ts"
+
+Rules A
+=======
+/<CamelCase> => there has to be a directory with name in CamelCase that follows the rules B
+?index.test.ts => there can be a file with name ?index.test.ts
+index.ts => there has to be a file with name index.ts
+=> there cannot be any other files!
+
+Rules B
+=======
+/?helpers => it can contain a directory helpers
+?<NameOfParentDirectory>.ts => it can contain a file with name of parent directory ending with .ts
+?<NameOfParentDirectory>.test.ts =>  it can contain a file with name of parent directory ending with .ts
+index.ts => it has to contain a file with index.ts
+

@@ -1,0 +1,26 @@
+{
+  "name": "validate_directory_structure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "bin": {
+    "dirlint": "./bin/index.js"
+  },
+  "scripts": {
+    "start": "ts-node index.ts",
+    "build": "tsc -p . --outDir bin"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/yargs": "^17.0.12",
+    "js-yaml": "^4.1.0",
+    "yargs": "^17.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.16"
+  }
+}
