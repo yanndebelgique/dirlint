@@ -1,0 +1,6 @@
+---
+- /<camelCase>:
+    - index.ts
+    - <NameOfParentDir>.ts
+    - <NameOfParentDir>.story.ts
+- index.ts

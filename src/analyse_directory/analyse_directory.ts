@@ -206,22 +206,25 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
       const incorrect_items = invalid_content_rules.flatMap(
         ({ item, rule, analysis }) => analysis.incorrect_items
       );
+
+      const isExtraneousItem = (item: FileSystemItem) => {
+        if (isDirRuleItem(item)) {
+          return false;
+        }
+        if (rule.content_rules.length === 0) {
+          return false;
+        }
+        // does not match any name rule. therefore it has no place in directory
+        const a_rule_matches = rule.content_rules.some((rule) => {
+          return does_item_pass_name_rule({ item, rule });
+        });
+
+        return !a_rule_matches;
+      };
       const extraneous_items =
         item.item_type === "file"
           ? []
-          : get_items_in_directory(item.item_path).filter((item) => {
-              if (isDirRuleItem(item)) {
-                return false;
-              }
-              if (rule.content_rules.length === 0) {
-                return false;
-              }
-              // does not match any name rule. therefore it has no place in directory
-              const no_rule_matches = rule.content_rules.some((rule) => {
-                return does_item_pass_name_rule({ item, rule });
-              });
-              return !no_rule_matches;
-            });
+          : keep(get_items_in_directory(item.item_path), isExtraneousItem);
 
       return {
         item,
@@ -328,13 +331,13 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
         });
       }
       case "NameOfParentDir": {
-
-
-        const expected_item_name = rule.name_rule.replace(
-          "<NameOfParentDir>",
-          path.basename(dir_path)
-        );
+        // get dir path
         return items.filter((i) => {
+          const dir_path = path.dirname(i.item_path);
+          const expected_item_name = rule.name_rule.replace(
+            "<NameOfParentDir>",
+            path.basename(dir_path)
+          );
           return path.basename(i.item_path) === expected_item_name;
         });
       }
@@ -343,4 +346,8 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
       }
     }
   }
+}
+
+function keep<U>(arr: U[], predicate: (item: U) => boolean) {
+  return arr.filter(predicate);
 }
