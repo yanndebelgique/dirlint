@@ -121,3 +121,38 @@ invalid dir structure!
 > dirlint ./case_3_2
 valid!
 ```
+
+## Example 4: Camelcase directory should contain an index.ts file
+```.dirrules.yaml
+---
+- /<CamelCase>:
+    - index.ts
+```
+
+### case 4.1: Invalid because camelcase directory does not contain index.ts file
+```directory
+- /Hello
+- index.ts
+```
+
+```bash
+> dirlint ./case_4_1
+{
+  "item": {
+    "item_type": "dir",
+    "item_path": "test_directories/case_4_1"
+  },
+  "incorrect_items": [
+    {
+      "item": {
+        "item_type": "dir",
+        "item_path": "test_directories/case_4_1/Hello"
+      },
+      "missing_items": [
+        "index.ts"
+      ]
+    }
+  ]
+}
+invalid dir structure!
+```

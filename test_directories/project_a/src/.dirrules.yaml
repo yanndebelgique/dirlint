@@ -7,9 +7,7 @@
         - /index.ts
         - /<CamelCase>:
             - index.ts
-    - index.ts
     - ?index.test.ts
-- index.ts
 - /pages
 - wtf.ts
 - ?styled.ts

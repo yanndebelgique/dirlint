@@ -9,7 +9,7 @@ import * as fs from "fs";
 
 export interface Analysis {
   item: FileSystemItem;
-  rule: Rule;
+  rule?: Rule;
   analysis: {
     missing_items: Rule[];
     incorrect_items: Analysis[];
@@ -65,11 +65,9 @@ export function analyse_directory(dir_path: string): Analysis {
       item_type: "dir" as FileSystemItem["item_type"],
       item_path: path.dirname(dir_path),
     };
-
     if (!_has_dir_rule_configured(dir_path)) {
       return {
         item: source,
-        //@ts-ignore
         rule: undefined,
         analysis: {
           missing_items: [],
@@ -236,7 +234,6 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
       };
     })
     .filter((i) => {
-      //@ts-ignore
       return is_invalid_analysis(i);
     });
 
@@ -250,6 +247,7 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
     },
   };
 
+  // Implementation
   function isDirRuleItem(item: FileSystemItem): boolean {
     return (
       item.item_type === "file" && item.item_path.endsWith(".dirrules.yaml")

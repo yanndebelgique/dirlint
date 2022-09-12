@@ -1,7 +1,7 @@
 #! /usr/bin/env node
+import { analyse_and_report } from "./src/analyse_directory/analyse_and_report";
+
 const fs = require("fs");
-import { analyse_directory , is_invalid_analysis } from "./src/analyse_directory";
-import { make_analysis_readable } from "./src/make_analysis_readable";
 
 const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
 
@@ -19,22 +19,8 @@ function run() {
     console.log('the path you passed does not exist!')
     return;
   }
-
   const dirPath = first_arg;
-  const dir_structure_analysis = analyse_directory(dirPath);
-
-  if(is_invalid_analysis(dir_structure_analysis)){
-    const readable_analysis = make_analysis_readable({
-      dirPath,
-      analysis: dir_structure_analysis
-    });
-    console.log(JSON.stringify(readable_analysis, null, 2))
-    console.log('invalid dir structure!');
-    process.exit(1)
-  } else {
-    console.log('valid!')
-    process.exit(0)
-  }
+  analyse_and_report({dirPath})
 }
 
 run();
