@@ -1,3 +1,4 @@
 ---
 - /<CamelCase>:
     - index.ts
+- index.ts
