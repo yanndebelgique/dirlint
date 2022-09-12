@@ -8,9 +8,11 @@ This is a simple tool to lint directories. It can be used to check for:
 
 # Installation
 
-```bash
-npm install -g directory-lint
-```
+1. clone repo
+2. go to repo directory
+3. run `npm install -g .`
+
+`dirlint` is now available as a global command.
 
 # Usage
 

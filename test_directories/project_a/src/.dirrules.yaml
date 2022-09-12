@@ -1,11 +1,11 @@
 ---
 - /?components:
-    - /<CamelCase>:
+    - /<camelCase>:
         - /?helpers
         - ?<NameOfParentDir>.ts
         - ?<NameOfParentDir>.test.ts
         - /index.ts
-        - /<CamelCase>:
+        - /<camelCase>:
             - index.ts
     - ?index.test.ts
 - /pages

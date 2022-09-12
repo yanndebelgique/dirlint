@@ -41,7 +41,6 @@ function analyse_directory(dir_path) {
         if (!_has_dir_rule_configured(dir_path)) {
             return {
                 item: source,
-                //@ts-ignore
                 rule: undefined,
                 analysis: {
                     missing_items: [],
@@ -173,7 +172,6 @@ function _evaluate_rule(item, rule) {
         };
     })
         .filter(function (i) {
-        //@ts-ignore
         return (0, exports.is_invalid_analysis)(i);
     });
     return {
@@ -185,6 +183,7 @@ function _evaluate_rule(item, rule) {
             extraneous_items: []
         }
     };
+    // Implementation
     function isDirRuleItem(item) {
         return (item.item_type === "file" && item.item_path.endsWith(".dirrules.yaml"));
     }
@@ -203,8 +202,8 @@ function _evaluate_rule(item, rule) {
      * @param rule
      */
     function _get_items_that_passes_name_rule(items, rule) {
-        var rule_type = rule.name_rule.includes("<CamelCase>")
-            ? "CamelCase"
+        var rule_type = rule.name_rule.includes("<camelCase>")
+            ? "camelCase"
             : rule.name_rule.includes("<PascalCase>")
                 ? "PascalCase"
                 : rule.name_rule.includes("<NameOfParentDir>")
@@ -233,13 +232,15 @@ function _evaluate_rule(item, rule) {
                     return passed_1(base);
                 });
             }
-            case "CamelCase": {
+            case "camelCase": {
                 var regex_2 = rule.name_rule
-                    .split("<CamelCase>")
+                    .split("<camelCase>")
                     .map(escapeRegex)
-                    .join("<CamelCase>")
-                    .replace("<CamelCase>", "[A-Za-z]([A-Z0-9]*[a-z][a-z0-9]*)[A-Za-z0-9]*");
-                var passed_2 = function (name) { return new RegExp(regex_2).test(name); };
+                    .join("<camelCase>")
+                    .replace("<camelCase>", "^[a-z][A-Za-z0-9]*");
+                var passed_2 = function (name) {
+                    return !name.includes('_') && new RegExp(regex_2).test(name);
+                };
                 return items.filter(function (i) {
                     var base = path.basename(i.item_path);
                     return passed_2(base);

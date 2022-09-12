@@ -1,7 +1,7 @@
 ---
 - '*'
 - /pages:
-    - /<CamelCase>:
+    - /<camelCase>:
         - ?index.test.tsx
         - index.tsx
 - x.ts

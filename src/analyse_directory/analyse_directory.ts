@@ -273,8 +273,8 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
     items: FileSystemItem[],
     rule: Rule
   ): FileSystemItem[] {
-    const rule_type = rule.name_rule.includes("<CamelCase>")
-      ? "CamelCase"
+    const rule_type = rule.name_rule.includes("<camelCase>")
+      ? "camelCase"
       : rule.name_rule.includes("<PascalCase>")
       ? "PascalCase"
       : rule.name_rule.includes("<NameOfParentDir>")
@@ -309,22 +309,27 @@ function _evaluate_rule(item: FileSystemItem, rule: Rule): Analysis {
           return passed(base);
         });
       }
-      case "CamelCase": {
+      case "camelCase": {
         const regex = rule.name_rule
-          .split("<CamelCase>")
+          .split("<camelCase>")
           .map(escapeRegex)
-          .join("<CamelCase>")
+          .join("<camelCase>")
           .replace(
-            "<CamelCase>",
-            "[A-Za-z]([A-Z0-9]*[a-z][a-z0-9]*)[A-Za-z0-9]*"
+            "<camelCase>",
+            "^[a-z][A-Za-z0-9]*"
           );
-        const passed = (name: string) => new RegExp(regex).test(name);
+
+        const passed = (name: string) => {
+          return !name.includes('_') && new RegExp(regex).test(name);
+        }
         return items.filter((i) => {
           const base = path.basename(i.item_path);
           return passed(base);
         });
       }
       case "NameOfParentDir": {
+
+
         const expected_item_name = rule.name_rule.replace(
           "<NameOfParentDir>",
           path.basename(dir_path)

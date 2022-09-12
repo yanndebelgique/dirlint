@@ -203,8 +203,8 @@ function _evaluate_rule(item, rule) {
      * @param rule
      */
     function _get_items_that_passes_name_rule(items, rule) {
-        var rule_type = rule.name_rule.includes("<CamelCase>")
-            ? "CamelCase"
+        var rule_type = rule.name_rule.includes("<camelCase>")
+            ? "camelCase"
             : rule.name_rule.includes("<PascalCase>")
                 ? "PascalCase"
                 : rule.name_rule.includes("<NameOfParentDir>")
@@ -233,12 +233,12 @@ function _evaluate_rule(item, rule) {
                     return passed_1(base);
                 });
             }
-            case "CamelCase": {
+            case "camelCase": {
                 var regex_2 = rule.name_rule
-                    .split("<CamelCase>")
+                    .split("<camelCase>")
                     .map(escapeRegex)
-                    .join("<CamelCase>")
-                    .replace("<CamelCase>", "[A-Za-z]([A-Z0-9]*[a-z][a-z0-9]*)[A-Za-z0-9]*");
+                    .join("<camelCase>")
+                    .replace("<camelCase>", "[A-Za-z]([A-Z0-9]*[a-z][a-z0-9]*)[A-Za-z0-9]*");
                 var passed_2 = function (name) { return new RegExp(regex_2).test(name); };
                 return items.filter(function (i) {
                     var base = path.basename(i.item_path);
