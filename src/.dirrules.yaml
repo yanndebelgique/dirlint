@@ -1,0 +1,4 @@
+---
+# Rules for the src directory
+- '*'
+- /analyse_directory

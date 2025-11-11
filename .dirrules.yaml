@@ -1,0 +1,11 @@
+---
+# Directory linting rules for the dirlint project
+# '*' allows any files/directories
+# Specific files/dirs listed below are required
+
+- '*'
+- README.md
+- package.json
+- tsconfig.json
+- /src
+- /bin

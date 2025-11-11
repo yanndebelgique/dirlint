@@ -1,0 +1,6 @@
+---
+# Rules for the analyse_directory module
+- '*'
+- index.ts
+- analyse_directory.ts
+- analyse_and_report.ts
