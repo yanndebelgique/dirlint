@@ -12,7 +12,9 @@
   "scripts": {
     "start": "ts-node index.ts",
     "build": "tsc -p . --outDir bin",
-    "g:examples": "ts-node generate_examples_file.ts"
+    "g:examples": "ts-node generate_examples_file.ts",
+    "prepublishOnly": "npm run build",
+    "publish:npm": "npm publish --access public"
   },
   "author": "",
   "license": "ISC",
