@@ -1,8 +1,8 @@
 {
   "name": "@yanneman/validate_directory_structure",
   "version": "1.0.8",
-  "description": "",
-  "main": "index.js",
+  "description": "A CLI tool to validate and lint directory structures based on configurable rules",
+  "main": "bin/index.js",
   "directories": {
     "example": "examples"
   },
@@ -16,8 +16,26 @@
     "prepublishOnly": "npm run build",
     "publish:npm": "npm publish --access public"
   },
-  "author": "",
+  "keywords": [
+    "lint",
+    "directory",
+    "structure",
+    "validation",
+    "cli",
+    "filesystem",
+    "architecture",
+    "project-structure"
+  ],
+  "author": "yanneman",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yanndebelgique/dirlint.git"
+  },
+  "homepage": "https://github.com/yanndebelgique/dirlint#readme",
+  "bugs": {
+    "url": "https://github.com/yanndebelgique/dirlint/issues"
+  },
   "dependencies": {
     "@types/yargs": "^17.0.12",
     "js-yaml": "^4.1.0",
