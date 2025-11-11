@@ -2,21 +2,32 @@
 # Directory linting rules for the dirlint project
 # All allowed files and directories must be explicitly listed
 
+# Documentation
 - README.md
+- EXAMPLES.md
+
+# Package configuration
 - package.json
 - package-lock.json
 - tsconfig.json
-- index.ts
-- .gitignore
-- .prettierrc
-- EXAMPLES.md
+- nodemon.json
+
+# Source files
+- index.ts  # Main CLI entry point
 - generate_examples_file.ts
 - test.ts
-- nodemon.json
+
+# Scripts and config
 - publish.sh
-- /src
-- /bin
-- /test_directories
+- .gitignore
+- .prettierrc
+
+# Required directories
+- /src  # Source TypeScript files
+- /bin  # Compiled JavaScript output
+
+# Optional directories
+- /test_directories  # Test fixtures
 - /.git
 - /.github
 - /.claude
