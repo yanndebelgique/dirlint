@@ -15,7 +15,7 @@
 # Source files
 - index.ts  # Main CLI entry point
 - generate_examples_file.ts  # Script to generate EXAMPLES.md from test directories
-- test.ts  # Test file
+- test.ts  # Manual test runner for validating test directory cases during development
 
 # Scripts and config
 - publish.sh  # Script to publish package to npm with authentication
