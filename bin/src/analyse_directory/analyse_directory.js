@@ -33,7 +33,9 @@ function unpackAnalysis(analysis) {
  * @param dir_path
  */
 function analyse_directory(dir_path) {
-    return _iter_analyse_directory(dir_path);
+    // Normalize relative paths like "." to absolute paths
+    var resolved_dir_path = path.resolve(dir_path);
+    return _iter_analyse_directory(resolved_dir_path);
     function _iter_analyse_directory(dir_path) {
         var source = {
             item_type: "dir",

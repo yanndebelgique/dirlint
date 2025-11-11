@@ -58,7 +58,9 @@ function unpackAnalysis(analysis: Analysis): Analysis {
  * @param dir_path
  */
 export function analyse_directory(dir_path: string): Analysis {
-  return _iter_analyse_directory(dir_path);
+  // Normalize relative paths like "." to absolute paths
+  const resolved_dir_path = path.resolve(dir_path);
+  return _iter_analyse_directory(resolved_dir_path);
 
   function _iter_analyse_directory(dir_path: string): Analysis {
     const source = {
