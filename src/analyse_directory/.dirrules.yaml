@@ -1,9 +1,9 @@
 ---
 # Rules for the analyse_directory module
 # All TypeScript files must be explicitly listed
-- index.ts
-- analyse_directory.ts
-- analyse_and_report.ts
-- get_files_in_directory.ts
-- get_directories_in_directory.ts
-- get_items_in_directory.ts
+- index.ts  # Module exports
+- analyse_directory.ts  # Main directory analysis logic
+- analyse_and_report.ts  # Wrapper that analyzes and prints results
+- get_files_in_directory.ts  # Lists all files in a directory
+- get_directories_in_directory.ts  # Lists all subdirectories in a directory
+- get_items_in_directory.ts  # Lists all items (files and directories) in a directory

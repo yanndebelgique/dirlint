@@ -3,32 +3,32 @@
 # All allowed files and directories must be explicitly listed
 
 # Documentation
-- README.md
-- EXAMPLES.md
+- README.md  # Main project documentation and usage instructions
+- EXAMPLES.md  # Auto-generated examples showing how dirlint works
 
 # Package configuration
-- package.json
-- package-lock.json
-- tsconfig.json
-- nodemon.json
+- package.json  # NPM package metadata and dependencies
+- package-lock.json  # Locked versions of dependencies
+- tsconfig.json  # TypeScript compiler configuration
+- nodemon.json  # Development auto-reload configuration
 
 # Source files
 - index.ts  # Main CLI entry point
-- generate_examples_file.ts
-- test.ts
+- generate_examples_file.ts  # Script to generate EXAMPLES.md from test directories
+- test.ts  # Test file
 
 # Scripts and config
-- publish.sh
-- .gitignore
-- .prettierrc
+- publish.sh  # Script to publish package to npm with authentication
+- .gitignore  # Git files to ignore
+- .prettierrc  # Code formatting configuration
 
 # Required directories
-- /src  # Source TypeScript files
-- /bin  # Compiled JavaScript output
+- /src  # TypeScript source code
+- /bin  # Compiled JavaScript output for distribution
 
 # Optional directories
-- /test_directories  # Test fixtures
-- /.git
-- /.github
-- /.claude
-- /node_modules
+- /test_directories  # Test fixtures with sample .dirrules.yaml files
+- /.git  # Git version control directory
+- /.github  # GitHub workflows and configuration
+- /.claude  # Claude Code settings
+- /node_modules  # NPM dependencies

@@ -1,4 +1,4 @@
 ---
 # Rules for the src directory
-- make_analysis_readable.ts
-- /analyse_directory
+- make_analysis_readable.ts  # Utility to format analysis results for human reading
+- /analyse_directory  # Core directory analysis and validation logic
