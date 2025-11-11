@@ -7,7 +7,7 @@
     "example": "examples"
   },
   "bin": {
-    "dirlint": "./bin/index.js"
+    "dirlint": "bin/index.js"
   },
   "scripts": {
     "start": "ts-node index.ts",
