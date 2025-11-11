@@ -28,23 +28,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
-      - name: Debug authentication setup
+      - name: Setup npm authentication
         run: |
-          echo "Checking .npmrc file:"
-          cat ~/.npmrc || echo "No .npmrc in home"
-          cat .npmrc || echo "No .npmrc in project"
-          echo "Token length: ${#NODE_AUTH_TOKEN}"
-          if [ -z "$NODE_AUTH_TOKEN" ]; then
-            echo "ERROR: NODE_AUTH_TOKEN is empty!"
-          else
-            echo "TOKEN is set (first 10 chars): ${NODE_AUTH_TOKEN:0:10}..."
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          cat ~/.npmrc
       - name: Check npm authentication
         run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Publish to npm
+        run: npm publish
