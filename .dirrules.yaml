@@ -1,11 +1,23 @@
 ---
 # Directory linting rules for the dirlint project
-# '*' allows any files/directories
-# Specific files/dirs listed below are required
+# All allowed files and directories must be explicitly listed
 
-- '*'
 - README.md
 - package.json
+- package-lock.json
 - tsconfig.json
+- index.ts
+- .gitignore
+- .prettierrc
+- EXAMPLES.md
+- generate_examples_file.ts
+- test.ts
+- nodemon.json
+- publish.sh
 - /src
 - /bin
+- /test_directories
+- /.git
+- /.github
+- /.claude
+- /node_modules

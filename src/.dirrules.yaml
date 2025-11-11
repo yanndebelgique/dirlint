@@ -1,4 +1,4 @@
 ---
 # Rules for the src directory
-- '*'
+- make_analysis_readable.ts
 - /analyse_directory
