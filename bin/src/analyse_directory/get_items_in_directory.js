@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-exports.get_items_in_directory = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.get_items_in_directory = get_items_in_directory;
 var fs = require("fs");
 var path = require("path");
 function get_items_in_directory(directory_path) {
@@ -13,4 +13,3 @@ function get_items_in_directory(directory_path) {
         };
     });
 }
-exports.get_items_in_directory = get_items_in_directory;

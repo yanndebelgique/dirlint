@@ -1,6 +1,7 @@
 "use strict";
-exports.__esModule = true;
-exports.analyse_directory = exports.is_invalid_analysis = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.is_invalid_analysis = void 0;
+exports.analyse_directory = analyse_directory;
 var yaml = require("js-yaml");
 var get_items_in_directory_1 = require("./get_items_in_directory");
 var path = require("path");
@@ -36,7 +37,7 @@ function analyse_directory(dir_path) {
     function _iter_analyse_directory(dir_path) {
         var source = {
             item_type: "dir",
-            item_path: path.dirname(dir_path)
+            item_path: path.dirname(dir_path),
         };
         if (!_has_dir_rule_configured(dir_path)) {
             return {
@@ -45,8 +46,8 @@ function analyse_directory(dir_path) {
                 analysis: {
                     missing_items: [],
                     incorrect_items: [],
-                    extraneous_items: []
-                }
+                    extraneous_items: [],
+                },
             };
         }
         var rule = _parse_dir_rule_configuration(dir_path);
@@ -61,7 +62,7 @@ function analyse_directory(dir_path) {
             optional: false,
             applied_to_items_of_type: "dir",
             name_rule: path.basename(dir_path),
-            content_rules: doc.map(parseYamlRule)
+            content_rules: doc.map(parseYamlRule),
         };
         function parseYamlRule(rule) {
             if (typeof rule === "string" && !rule.startsWith("/")) {
@@ -69,7 +70,7 @@ function analyse_directory(dir_path) {
                     optional: rule.startsWith("?"),
                     applied_to_items_of_type: "file",
                     name_rule: rule.replace("?", ""),
-                    content_rules: []
+                    content_rules: [],
                 };
             }
             else {
@@ -78,7 +79,7 @@ function analyse_directory(dir_path) {
                     optional: isOptional,
                     applied_to_items_of_type: "dir",
                     name_rule: dir_name,
-                    content_rules: dir_content_rules.map(parseYamlRule)
+                    content_rules: dir_content_rules.map(parseYamlRule),
                 };
             }
             function parseRule(rule) {
@@ -86,7 +87,7 @@ function analyse_directory(dir_path) {
                     var dir_name_1 = rule.replace("/", "");
                     return {
                         isOptional: dir_name_1.startsWith("?"),
-                        dir_name: dir_name_1.replace("?", "")
+                        dir_name: dir_name_1.replace("?", ""),
                     };
                 }
                 var key = Object.keys(rule)[0];
@@ -96,13 +97,12 @@ function analyse_directory(dir_path) {
                     isOptional: isOptional,
                     dir_name: dir_name.replace("?", ""),
                     //@ts-ignore
-                    dir_content_rules: rule[key]
+                    dir_content_rules: rule[key],
                 };
             }
         }
     }
 }
-exports.analyse_directory = analyse_directory;
 function _evaluate_rule(item, rule) {
     var dir_path = item.item_path;
     var isOptional = rule.optional, applied_to_items_of_type = rule.applied_to_items_of_type;
@@ -116,8 +116,8 @@ function _evaluate_rule(item, rule) {
                 analysis: {
                     missing_items: [],
                     incorrect_items: [],
-                    extraneous_items: []
-                }
+                    extraneous_items: [],
+                },
             }
             : {
                 item: item,
@@ -125,8 +125,8 @@ function _evaluate_rule(item, rule) {
                 analysis: {
                     missing_items: [rule],
                     incorrect_items: [],
-                    extraneous_items: []
-                }
+                    extraneous_items: [],
+                },
             };
     }
     function does_item_pass_name_rule(_a) {
@@ -168,8 +168,8 @@ function _evaluate_rule(item, rule) {
             analysis: {
                 missing_items: missing_items,
                 incorrect_items: incorrect_items,
-                extraneous_items: extraneous_items
-            }
+                extraneous_items: extraneous_items,
+            },
         };
     })
         .filter(function (i) {
@@ -181,8 +181,8 @@ function _evaluate_rule(item, rule) {
         analysis: {
             missing_items: [],
             incorrect_items: items_with_invalid_content,
-            extraneous_items: []
-        }
+            extraneous_items: [],
+        },
     };
     // Implementation
     function isDirRuleItem(item) {

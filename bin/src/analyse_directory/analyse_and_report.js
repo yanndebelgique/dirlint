@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-exports.analyse_and_report = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.analyse_and_report = analyse_and_report;
 var index_1 = require("./index");
 var make_analysis_readable_1 = require("../make_analysis_readable");
 /**
@@ -24,4 +24,3 @@ function analyse_and_report(_a) {
         process.exit(0);
     }
 }
-exports.analyse_and_report = analyse_and_report;

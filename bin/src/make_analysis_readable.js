@@ -1,6 +1,6 @@
 "use strict";
-exports.__esModule = true;
-exports.make_analysis_readable = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.make_analysis_readable = make_analysis_readable;
 function make_analysis_readable(_a) {
     var analysis = _a.analysis, dirPath = _a.dirPath, options = _a.options;
     var _b = (options !== null && options !== void 0 ? options : {}).readability_level, readability_level = _b === void 0 ? "somewhat" : _b;
@@ -17,7 +17,7 @@ function make_analysis_readable(_a) {
             item: printItem(item),
             missing_items: missing_items,
             incorrect_items: incorrect_items,
-            extraneous_items: analysis.extraneous_items.map(printItem)
+            extraneous_items: analysis.extraneous_items.map(printItem),
         });
         function removeEmpty(obj) {
             return Object.fromEntries(Object.entries(obj).filter(function (_a) {
@@ -39,7 +39,7 @@ function make_analysis_readable(_a) {
                 case "somewhat": {
                     return {
                         item_type: item.item_type,
-                        item_path: item.item_path.replace(dirPath, "")
+                        item_path: item.item_path.replace(dirPath, ""),
                     };
                 }
                 case "standard": {
@@ -51,4 +51,3 @@ function make_analysis_readable(_a) {
     var _readable_analysis = _make_analysis_readable(analysis);
     return _readable_analysis;
 }
-exports.make_analysis_readable = make_analysis_readable;
